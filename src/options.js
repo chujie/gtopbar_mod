@@ -78,13 +78,18 @@ function addLink(cfacetext, cpos, curl) {
 
 function saveLink() {
 	if (pos.value) {
-		addLink(facetext.value, pos.value, linkurl.value);
+		addLink(facetext.value, pos.value, linkurl.value);	
 	}
 }
 
 function removeLink(id) {
 	var linkList = JSON.parse(localStorage['linkList']);
-	var pos = /pos([0-9]+)/.exec(id)[1];
+	var pos;
+	if (id == "pos") {
+		pos = "";
+	} else {
+		pos = /pos([0-9]+)/.exec(id)[1];
+	}
 	for(var i=0; i<linkList.length; i++) {
 		if (linkList[i].pos == pos) {
 			linkList.splice(i,1);
